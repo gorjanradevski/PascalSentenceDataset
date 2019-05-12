@@ -37,9 +37,6 @@ dataset.download_sentences()
 # create correspondence data by dataset
 dataset.create_correspondence_data()
 ```
-
-## The rest of the README is identical to: https://github.com/rupy/PascalSentenceDataset
-
 That's it!
 
 Correspondence data is the csv data to correspond data id to image data.
