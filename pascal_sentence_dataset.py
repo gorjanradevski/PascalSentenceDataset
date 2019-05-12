@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #-*- coding: utf-8 -*-
 
-from urlparse import urljoin
+from urllib.parse import urljoin
 from pyquery import PyQuery
 import os
 import requests
@@ -31,15 +31,15 @@ class PascalSentenceDataSet():
 
             # download image
             output = os.path.join(output_dir, img_file_name)
-            print output
+            print(output)
             if img_src.startswith('http'):
                 img_url = img_src
             else:
                 img_url = urljoin(self.url, img_src)
             if os.path.isfile(output):
-                print "Already downloaded, Skipping: %s" % output
+                print("Already downloaded, Skipping: %s" % output)
                 continue
-            print "Downloading: %s" % output
+            print("Downloading: %s" % output)
             with open(output,'wb') as f:
 
                 while True:
@@ -48,8 +48,8 @@ class PascalSentenceDataSet():
                     if result.status_code == 200:
                         f.write(raw)
                         break
-                    print "error occurred while fetching img"
-                    print "retry..."
+                    print("error occurred while fetching img")
+                    print("retry...")
 
 
     def download_sentences(self):
@@ -66,22 +66,22 @@ class PascalSentenceDataSet():
 
             # dowonload sentences
             head, tail = os.path.splitext(img_file_name)
-            sentence_file_name = head + "txt"
+            sentence_file_name = head + ".txt"
             output = os.path.join(output_dir, sentence_file_name)
             if os.path.isfile(output):
-                print "Already downloaded, Skipping: %s" % output
+                print("Already downloaded, Skipping: %s" % output)
                 continue
-            print "Downloading: %s" % output
+            print("Downloading: %s" % output)
             with open(output,'w') as f:
                 for td in tr('table tr td').items():
                     f.write(td.text() + "\n")
 
     def create_correspondence_data(self):
         dom = PyQuery(self.url)
-        writer = csv.writer(open('correspondence.csv', 'wb'))
+        writer = csv.writer(open('correspondence.csv', 'w'))
         for i, img in enumerate(dom('img').items()):
             img_src = img.attr['src']
-            print "%d => %s" % (i + 1, img_src)
+            print("%d => %s" % (i + 1, img_src))
             writer.writerow([i + 1, img_src])
 
 if __name__=="__main__":

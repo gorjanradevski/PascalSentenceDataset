@@ -1,35 +1,30 @@
 # PascalSentenceDataset
 
-This program is utility to download pascal sentence dataset.
+This program is utility to download pascal sentence dataset using Python3 with a virtual environment set up by Poetry. All credits go to: https://github.com/rupy
 
 ## Installation
 
 You can install by "git clone" command.
 
 ```
-git clone https://github.com/rupy/PascalSentenceDataset.git
+https://github.com/gorjanradevski/PascalSentenceDataset.git
 ```
 
 ### Dependency
 
-You must install some python libraries. Use pip command.
-
-```
-pyquery 1.2.9
-requests 2.6.0
-```
+You must install some python libraries. Use ```poetry install``` once Poetry has been set up.
 
 ## Usage
 
 To download dataset, just run program as follow:
 
 ```
-python pascal_sentence_dataset.py
+poetry run python pascal_sentence_dataset.py
 ```
 
 You can also write code like this:
 
-```python
+```poetry run python
 # import
 from pascal_sentence_dataset import PascalSentenceDataSet
 
@@ -42,6 +37,8 @@ dataset.download_sentences()
 # create correspondence data by dataset
 dataset.create_correspondence_data()
 ```
+
+## The rest of the README is identical to: https://github.com/rupy/PascalSentenceDataset
 
 That's it!
 
